@@ -15,6 +15,6 @@ For backend developers: We like Python, Erlang (but we really don't mind if you 
 For iOS and Android developers: Do you even have another choice?
 
 You should fork this repository and put your work there. 
-This exercise should take no longer than 4 hours. However, you are not timed
+This exercise should take no longer than 2 days. However, you are not timed
 and you can send us a pull request whenever you finish. (If you have something 
 live going on, even better!)
