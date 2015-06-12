@@ -11,8 +11,13 @@ Create a Q & A application that has the following functionality.
 Real-time is preferred.
 
 You can write this application in whatever languages you prefer.
-For backend developers: We like Python, Erlang (but we really don't mind if you write it in other languages)
+For Backend developers: We like Python, Erlang (but we really don't mind if you write it in other languages)
 For iOS and Android developers: Do you even have another choice?
+
+Things to look out:
+Using a frontend framework like angularjs would be a bonus
+Using a backend framework like flask would be a bonus
+We look out for maintainability of your code. 
 
 You should fork this repository and put your work there. 
 This exercise should take no longer than 2 days. However, you are not timed
