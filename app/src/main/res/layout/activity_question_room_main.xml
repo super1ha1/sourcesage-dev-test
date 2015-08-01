@@ -30,11 +30,11 @@
             android:layout_below="@id/empty"
 
             >
-            <com.vinako.letask.LoadMoreListView
+            <com.vinako.letask.utility.LoadMoreListView
                 android:id="@+id/question_list_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" >
-            </com.vinako.letask.LoadMoreListView>
+            </com.vinako.letask.utility.LoadMoreListView>
 
         </android.support.v4.widget.SwipeRefreshLayout>
 

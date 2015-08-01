@@ -1,12 +1,18 @@
 package com.vinako.letask.utility;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.util.ArrayMap;
 import android.util.Log;
 import android.widget.Toast;
+
+import java.lang.reflect.Field;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Khue on 29/7/2015.
@@ -16,7 +22,7 @@ public class Utils {
 
     public static void showMessage(Context context, String message){
         try {
-            Toast.makeText(context, message, Toast.LENGTH_LONG).show();
+            Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
             Log.d(TAG, "Error when make Toast: " + e.getMessage());
             e.printStackTrace();
@@ -51,6 +57,46 @@ public class Utils {
 
 
     }
+    public static Activity getForeGroundActivity() {
+        try {
+            Class activityThreadClass = Class.forName("android.app.ActivityThread");
+            Object activityThread = activityThreadClass.getMethod("currentActivityThread").invoke(null);
+            Field activitiesField = activityThreadClass.getDeclaredField("mActivities");
+            activitiesField.setAccessible(true);
+            Map activities = getMapActivities(activitiesField, activityThread);
+
+            if( activities != null){
+                for (Object activityRecord : activities.values()) {
+                    Class activityRecordClass = activityRecord.getClass();
+                    Field pausedField = activityRecordClass.getDeclaredField("paused");
+                    pausedField.setAccessible(true);
+                    if (!pausedField.getBoolean(activityRecord)) {
+                        Field activityField = activityRecordClass.getDeclaredField("activity");
+                        activityField.setAccessible(true);
+                        Activity activity = (Activity) activityField.get(activityRecord);
+                        return activity;
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static Map getMapActivities(Field activitiesField, Object activityThread){
+        try{
+            if( activitiesField.get(activityThread) instanceof HashMap){
+                return  (HashMap) activitiesField.get(activityThread);
+            }else  if( activitiesField.get(activityThread) instanceof ArrayMap){
+                return (ArrayMap) activitiesField.get(activityThread);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public static void stopProgressDialogLoading(){
         try {
             if( Storage.dialog != null){

@@ -1,4 +1,4 @@
-package com.vinako.letask;
+package com.vinako.letask.utility;
 
 /**
  * Created by Khue on 28/7/2015.
@@ -14,6 +14,8 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+
+import com.vinako.letask.R;
 
 
 public class LoadMoreListView extends ListView implements AbsListView.OnScrollListener {

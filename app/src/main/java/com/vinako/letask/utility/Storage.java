@@ -16,6 +16,11 @@ public class Storage {
     public static List<ParseObject> questionList = new ArrayList<ParseObject>();
     public static Map<String, List<ParseObject>> answerMap = new HashMap<String, List<ParseObject>>();
     public static int questionSkip = 0 ;
+    public static int answerSkip = 0 ;
 
     public static ProgressDialog dialog;
+    public static ParseObject selectedQuestion;
+    public static List<ParseObject> currentAnswerList = new ArrayList<ParseObject>();
+
+
 }
